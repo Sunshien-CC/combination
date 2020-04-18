@@ -1,6 +1,7 @@
 import math
 from typing import *
 import utils
+import argparse
 
 
 def num_combinations(n: int, r: int) -> int:
@@ -53,10 +54,9 @@ def index_to_combination(n: int, r: int, i: int) -> List[int]:
 
     return result
 
+
 @utils.timer
-def bench_c_6_3():
-    n = 6
-    r = 3
+def bench_c_n_r(n=6, r=3):
 
     for i in range(num_combinations(n, r)):
         print('=' * 10)
@@ -71,4 +71,10 @@ def bench_c_6_3():
 
 
 if __name__ == "__main__":
-    bench_c_6_3()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-n', type=int, default=6)
+    parser.add_argument('-r', type=int, default=3)
+
+    args = parser.parse_args()
+
+    bench_c_n_r(n=args.n, r=args.r)
