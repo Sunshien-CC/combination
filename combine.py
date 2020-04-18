@@ -12,17 +12,21 @@ def combination_to_index(n: int, r: int, c: List[int]) -> int:
     assert len(c) == r
     assert n >= r
 
-    numbers = list(range(1, n + 1))
-
+    # numbers = list(range(1, n + 1))
+    number=0
+    number_rest=n    
     result = 0
 
     for index in range(r):
         rest = r - 1 - index
 
         while True:
-            number = numbers.pop(0)
+            # number = numbers.pop(0)
+            number+=1
+            number_rest-=1
             if number < c[index]:
-                result += num_combinations(len(numbers), rest)
+                # result += num_combinations(len(numbers), rest)
+                result += num_combinations(number_rest, rest)
             elif number == c[index]:
                 break
 
@@ -34,7 +38,9 @@ def index_to_combination(n: int, r: int, i: int) -> List[int]:
 
     result = [0] * r
 
-    numbers = list(range(1, n + 1))
+    # numbers = list(range(1, n + 1))
+    number=0
+    number_rest=n
 
     for index in range(r):
         rest = r - 1 - index
@@ -42,8 +48,11 @@ def index_to_combination(n: int, r: int, i: int) -> List[int]:
         r0 = 0
         r1 = 0
         while True:
-            number = numbers.pop(0)
-            r1 += num_combinations(len(numbers), rest)
+            # number = numbers.pop(0)
+            number+=1
+            number_rest-=1
+            # r1 += num_combinations(len(numbers), rest)
+            r1 += num_combinations(number_rest, rest)
             # print(r1)
             if r1 > i:
                 result[index] = number
@@ -70,10 +79,20 @@ def bench_c_n_r(n=6, r=3):
         print('=' * 10)
 
 
+@utils.timer
+def i2c_time(n: int, r: int, i: int):
+     return index_to_combination(n,r,i)
+
+
+@utils.timer
+def c2i_time(n: int, r: int, c: List[int]):
+    return combination_to_index(n,r,c)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-n', type=int, default=6)
-    parser.add_argument('-r', type=int, default=3)
+    parser.add_argument('-r', type=int, default=2)
 
     args = parser.parse_args()
 

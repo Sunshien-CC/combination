@@ -10,6 +10,6 @@ def timer(fn):
         result = fn(*args, **kwargs)
         end_time = time.perf_counter()
         print(f'Duration: {end_time - start_time}s')
-        return result
+        return result,(end_time - start_time)
 
     return wrapper
