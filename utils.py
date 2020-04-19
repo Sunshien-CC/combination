@@ -9,7 +9,7 @@ def timer(fn):
         start_time = time.perf_counter()
         result = fn(*args, **kwargs)
         end_time = time.perf_counter()
-        print(f'Duration: {end_time - start_time}s')
+        # print(f'Duration: {end_time - start_time}s')
         return result,(end_time - start_time)
 
     return wrapper
