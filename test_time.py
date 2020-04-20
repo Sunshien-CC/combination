@@ -26,10 +26,19 @@ with open('result.txt','w') as f:
 
 plt.plot(test_N,time_i2c_list)
 plt.tick_params(labelsize=20)
-plt.savefig('./i2c_N.png')
+plt.title('i2c',fontsize=20)
+plt.xlabel('N',fontsize=20)
+plt.ylabel('time/ms',fontsize=20)
+plt.show()
+# plt.savefig('./i2c_N.png')
+
 plt.plot(test_N,time_c2i_list)
 plt.tick_params(labelsize=20)
-plt.savefig('./c2i_N.png')
+plt.title('c2i',fontsize=20)
+plt.xlabel('N',fontsize=20)
+plt.ylabel('time/ms',fontsize=20)
+plt.show()
+# plt.savefig('./c2i_N.png')
 
 #---------测试R  
 time_i2c_list=list([])
@@ -42,7 +51,6 @@ for r in test_R:
     sum_time_c2i=.0
     for j in range(5):
         index=num_combinations(N,r)//2
-        print(r,index)
         result_i2c,time_i2c=i2c_time(N,r,index)
         result_c2i,time_c2i=c2i_time(N,r,result_i2c)
         sum_time_i2c+=time_i2c
@@ -57,9 +65,16 @@ with open('result_R.txt','w') as f:
         
 plt.plot(test_R,time_i2c_list)
 plt.tick_params(labelsize=20)
+plt.title('i2c',fontsize=20)
+plt.xlabel('R',fontsize=20)
+plt.ylabel('time/ms',fontsize=20)
 plt.show()
-plt.savefig('./i2c_R.png')
+# plt.savefig('./i2c_R.png')
+
 plt.plot(test_R,time_c2i_list)
 plt.tick_params(labelsize=20)
-plt.savefig('./c2i_R.png')
+plt.title('c2i',fontsize=20)
+plt.xlabel('R',fontsize=20)
+plt.ylabel('time/ms',fontsize=20)
 plt.show()
+# plt.savefig('./c2i_R.png')
