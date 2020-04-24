@@ -92,7 +92,7 @@ def c2i_time(n: int, r: int, c: List[int]):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-n', type=int, default=6)
-    parser.add_argument('-r', type=int, default=2)
+    parser.add_argument('-r', type=int, default=3)
 
     args = parser.parse_args()
 
